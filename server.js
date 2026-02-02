@@ -25,7 +25,7 @@ const DB_URL = process.env.DB_URL || "mongodb://127.0.0.1:27017/aurika-labs";
 // Middlewares
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.client_origin || "*",
     credentials: true,
   })
 );
@@ -50,7 +50,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.client_origin || "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
