@@ -16,8 +16,10 @@ async function handleSignup(req, res) {
     const token = generateToken(newUser);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(201).json({ message: "User created successfully" });
@@ -41,9 +43,12 @@ async function handleLogin(req, res) {
     const token = generateToken(user);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
+
     res.status(200).json({ message: "Login successful" });
   } catch (error) {
     console.error("Error during login:", error);
@@ -55,8 +60,9 @@ async function handleLogout(req, res) {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,
+      sameSite: "none",
+      path: "/",
     });
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
@@ -64,6 +70,7 @@ async function handleLogout(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
 
 async function handleUpdate(req, res) {
   const { name, email } = req.body;
@@ -100,7 +107,7 @@ async function getProfile(req, res) {
     res.status(500).json({ message: "Internal server error" });
   }
 }
-    
+
 
 
 module.exports = {
