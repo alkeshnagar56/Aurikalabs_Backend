@@ -1,101 +1,250 @@
 # Aurika Labs – Backend
 
-    This is the backend server for Aurika Labs, a real-time chat and project management application.
+Backend server for **Aurika Labs**, a collaborative project management and real-time communication platform designed for teams to manage projects, tasks, discussions, and activities efficiently.
 
-# Tech Stack
+---
 
-    Node.js
+## Tech Stack
 
-    Express.js
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* Socket.IO
+* JSON Web Tokens (JWT)
+* bcrypt.js
 
-    MongoDB (MongoDB Atlas)
+---
 
-    Mongoose
+## Core Features
 
-    Socket.io
+### Authentication
 
-    JWT Authentication
+* User Registration
+* User Login
+* JWT Authentication
+* Protected Routes
 
+### Project Management
 
+* Create Projects
+* Update Projects
+* Delete Projects
+* Project Member Management
+* Role-Based Permissions
 
-# Features
+### Task Management
 
-    User signup and login
+* Create Tasks
+* Update Tasks
+* Delete Tasks
+* Task Assignment
+* Task Priorities
+* Task Status Tracking
+* Kanban Workflow
 
-    JWT-based authentication
+### Real-Time Collaboration
 
-    Project and task management
+* Real-Time Chat
+* Typing Indicators
+* Read Receipts
+* Online Presence
+* Socket.IO Integration
 
-    Real-time chat using Socket.io
+### Comments System
 
-    REST APIs
+* Task Comments
+* Real-Time Comment Updates
+* Comment Deletion
+* User-Based Comment Permissions
 
+### Activity Tracking
 
+* Task Created Activities
+* Task Updated Activities
+* Task Deleted Activities
+* Task Movement Tracking
+* Comment Activities
+* Real-Time Activity Feed
 
+---
 
+## Folder Structure
 
-# Folder Structure
-    backend/
-    │── controllers/
-    │── models/
-    │── routes/
-    │── middleware/
-    │── server.js
-    │── package.json
-    │── .env
+backend/
 
+├── controllers/
 
+├── middleware/
 
+├── models/
 
+├── routes/
 
-# Environment Variables
+├── sockets/
 
-    Create a .env file in the backend root:
+├── utils/
 
+├── server.js
 
-        PORT=5000
-        DB_URL=mongourl
-        JWT_SECRET=secretekey
-        client_origin= client_url
+├── package.json
 
+└── .env
 
+---
 
-# Run Project Locally
+## Environment Variables
 
-    Install dependencies:
+Create a `.env` file in the backend root directory:
 
-        npm install
+PORT=5000
 
+DB_URL=your_mongodb_connection_string
 
-    Start server:
+JWT_SECRET=your_secret_key
 
-        npm start
+CLIENT_ORIGIN=http://localhost:5173
 
+---
 
-    Server will run on:
+## Installation
 
-        http://localhost:5000
+Clone the repository:
 
+```bash
+git clone https://github.com/alkeshnagar56/Aurika-Labs.git
+```
 
-Socket.io
+Navigate to backend:
 
-    Socket.io is used for real-time messaging between users.
-    CORS origin should be updated after frontend deployment.
+```bash
+cd backend
+```
 
+Install dependencies:
 
-Deployment
+```bash
+npm install
+```
 
-    Backend hosted on Render
+Start development server:
 
+```bash
+npm start
+```
 
-Database hosted on MongoDB Atlas
+Server will run on:
 
-Frontend hosted on Netlify / Vercel
+```text
+http://localhost:5000
+```
 
+---
 
+## API Features
 
+### Authentication APIs
 
-Author
+* Signup
+* Login
+* Logout
+* Get User Profile
 
-Alkesh Nagar
-GitHub: https://github.com/alkeshnagar56
+### Project APIs
+
+* Create Project
+* Update Project
+* Delete Project
+* Add Members
+* Remove Members
+* Get Project Details
+
+### Task APIs
+
+* Create Task
+* Update Task
+* Delete Task
+* Fetch Tasks
+* Assigned Tasks
+
+### Comment APIs
+
+* Create Comment
+* Get Task Comments
+* Delete Comment
+
+### Activity APIs
+
+* Create Activity
+* Fetch Project Activities
+* Real-Time Activity Updates
+
+### Chat APIs
+
+* Create Conversation
+* Send Messages
+* Fetch Messages
+* Real-Time Messaging
+
+---
+
+## Socket.IO Events
+
+### Project Events
+
+* projectCreated
+* projectUpdated
+* projectDeleted
+
+### Task Events
+
+* taskCreated
+* taskUpdated
+* taskDeleted
+
+### Comment Events
+
+* commentCreated
+* commentDeleted
+
+### Activity Events
+
+* activityCreated
+
+### Chat Events
+
+* message
+* typing
+* messagesRead
+* presence
+
+---
+
+## Deployment
+
+### Backend
+
+Hosted on Render
+
+### Database
+
+Hosted on MongoDB Atlas
+
+### Frontend
+
+Hosted on Vercel
+
+---
+
+## Author
+
+**Alkesh Nagar**
+
+GitHub:
+https://github.com/alkeshnagar56
+
+---
+
+## License
+
+This project is developed for educational, learning, and portfolio purposes.

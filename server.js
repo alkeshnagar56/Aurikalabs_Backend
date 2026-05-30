@@ -14,6 +14,8 @@ const userRoutes = require("./routes/user");
 const projectRoutes = require("./routes/project");
 const taskRoutes = require("./routes/task");
 const chatRoutes = require("./routes/messages");
+const activityRoutes = require("./routes/activity");
+const commentRoutes = require("./routes/comment");
 
 // Socket event handlers
 const initSocket = require("./sockets/socket");
@@ -43,6 +45,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/task", taskRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/activity", activityRoutes);
+app.use("/api/comment", commentRoutes);
 
 // Wrap Express app in HTTP server
 const server = http.createServer(app);
@@ -56,6 +60,8 @@ const io = new Server(server, {
   },
 });
 
+app.set("io", io);
+
 // Socket authentication middleware
 io.use(async (socket, next) => {
   try {
@@ -65,7 +71,6 @@ io.use(async (socket, next) => {
         ?.split("; ")
         .find((row) => row.startsWith("token="))
         ?.split("=")[1];
-
     if (!token) {
       return next(new Error("Authentication error: No token provided"));
     }
